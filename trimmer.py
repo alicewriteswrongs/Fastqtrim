@@ -25,11 +25,7 @@ def get_args():
         type=int,
         help='Trim x number of bases from the start')
 
-    parser.add_argument('-e','--end',
-        required=False,
-        type=int,
-        help='Trim x number of bases from the end')
-
+    
     parser.add_argument('INPUT',
         type=argparse.FileType('rb'),
         default=sys.stdin,
@@ -54,7 +50,7 @@ def main(args):
     end = args.end
     for line in fin:
         count, text = line
-        print text[start:end]
+        print text[start:]
 
 
 
