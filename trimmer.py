@@ -35,22 +35,21 @@ def get_args():
     parser = argparse.ArgumentParser()
     #add commandline argument
     parser.add_argument('-s','--start',
-        required=False,
+        required=True,
         type=int,
         help='Trim x number of bases from the start')
-
     
     parser.add_argument('INPUT',
         type=argparse.FileType('rb'),
         default=sys.stdin,
         nargs='?',
-        help='VCF file')
+        help='Fastq file')
 
     parser.add_argument('OUTPUT',
         type=argparse.FileType('w'),
         default=sys.stdout,
         nargs='?',
-        help='VCF file')
+        help='Fastq file, defaults to stdout')
     #process arguments
     args = parser.parse_args()
     return args
@@ -61,11 +60,9 @@ def main(args):
     start = args.start
     fin = enumerate(args.INPUT)
     fout = args.OUTPUT
-    end = args.end
     for line in fin:
         count, text = line
         print text[start:]
-
 
 
 
